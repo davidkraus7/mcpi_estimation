@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\graphicspath{ {./images/} }
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\linespread{2}
+
+\title{\textbf{Data Description}}
+\author{David Kraus}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Consumer Expenditure Survey}
+
+The Consumer Expenditure Survey by the Bureau of Labor Statistics provides data on household characteristics and consumption behavior in the United States. I use the Public Use Micro Data dataset of the Consumer Expenditure Survey to estimate the non-homothetic CES demand system. Merging the Interview Survey and the Diary Survey is not possible at the household level due to distinct samples. I use the Interview Survey since it covers households over more extensive time intervals. I follow Schaab and Tan (2023) in restricting the sample. Namely, I only include urban households with heads aged 25 to 64. I drop households with post tax income below \$1000 or negative total quarterly expenditure. Finally, I drop all households within the top percentile or bottom percentile of post tax income or monthly total expenditure.
+
+\hfill
+
+\noindent Sectors are defined according to the Level 2 Aggregation Groups in the Universal Classification Codes (UCC) Hierarchy Groupings files. This leaves us with 23 sectors, as presented in Figure 1. I again follow Schaab and Tan (2023) in adjusting expenditures. Namely, I adjust the expenditures associated with owner-occupied housing by adding the rental equivalence of owned houses to both income and expenditures, and subtracting all other expenditures associated with owning a house to avoid double counting. The CEX tends to underrepresent high-income households, but has taken steps to address this issue by adjusting the sample weights since 2015. Table 1 provides some summary statistics of the constructed sample population.
+
+\begin{table}[h]
+\centering
+\vspace{0.3cm}  % Adds vertical space between caption and note
+\vspace{0.5cm}  % Adds space before the table
+\begin{tabular}{lccccc}
+\toprule
+Variable & Mean & Median & Std. Dev. & Min & Max \\
+\midrule
+Post-tax income & 91,705  & 71,041 & 75,682 & 2,130 & 426,587 \\
+Total expenditure & 13,849 & 10,620  & 10,620 & 2,140 & 73,800 \\
+Age of household reference & 45.4 & 46 & 11.4 & 25 & 64  \\
+Household size & 2.8  & 2 & 1.5 & 1 & 16 \\
+Number of children & 0.7 & 0 & 1.1 & 0 & 10  \\
+\bottomrule
+\textbf{Number of Observations:} 114,535 \\
+\end{tabular}
+\label{tab:summary_stats}
+\caption{Summary statistics of sample population}
+\end{table}
+
+\section{Other Data}
+
+Sectoral price indices are retrieved from the Federal Reserve Economic Data (FRED) website. These sectoral price indices reflect the nominal cost of the average consumption bundle for a given sector. Note that using the sectoral price indices reported on the FRED website restricts the potential definition of sectors. One would have to construct the sectoral price indices in order to increase the granularity of the analysis.
+
+\begin{thebibliography}{6}
+
+\bibitem{fred}
+Federal Reserve Bank of St. Louis. (n.d.). FRED: Federal Reserve Economic Data. Retrieved from https://fred.stlouisfed.org
+
+\bibitem{cex}
+U.S. Bureau of Labor Statistics. (n.d.). Consumer Expenditure Survey (CEX). Retrieved from https://www.bls.gov/cex/
+
+\end{thebibliography}
+
+\end{document}

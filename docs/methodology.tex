@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\graphicspath{ {./images/} }
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\linespread{2}
+
+\title{\textbf{Methodology}}
+\author{David Kraus}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Marginal Consumer Price Index}
+
+My paper follows Olivi et al. (2024) in defining the marginal consumer price index. Let $\frac{\partial e_{it}^n}{\partial e_t^n}$ denote the marginal budget share of household $n$ on sector $i$ in period $t$. The marginal budget share reflects the additional expenditure on a sector when a given household spends one additional dollar. Let $p_t^n$ denote the sample weight of household $n$ in period $t$, let $E_t^n$ denote the total expenditure of household $n$ in period $t$, and let $E_t$ denote the aggregate total expenditure in period $t$. The marginal budget shares are then aggregated according to,
+
+\begin{equation}
+    \overline{\frac{\partial e_{it}}{\partial e_t}} = \sum_n \nu_t^n \frac{\partial e_{it}^n}{\partial e_t^n}, \tag{1}
+\end{equation}
+
+\hfill
+
+\noindent where $\nu_t^n = \frac{p^n_t \frac{E_t^n}{E_t}}{\sum_n p^n_t \frac{E_t^n}{E_t}}$. In this way, the aggregate marginal budget share is a representative expenditure weighted mean of the marginal budget shares of individual households. Now, let $P_{it}$ denote the price level of sector $i$ in period $t$. The Marginal Consumer Price Index is then finally defined as,
+
+\begin{equation}
+    \text{MCPI} = \sum_i \overline{\frac{\partial e_{it}}{\partial e_t}} P_{it} \tag{2}
+\end{equation}
+
+\noindent Note that for homothetic preferences, the marginal budget shares coincide with the average budget shares. Therefore, the marginal consumer price index would coincide with the conventional consumer price index. For non-homothetic CES preferences this is no longer the case in general.
+
+\section{Estimation Details}
+
+Let $\omega_{it}^n$ denote the expenditure share of household $n$ on sector $i$ in period $t$. Furthermore, let $\sigma_t$ denote the elasticity of substitution in period $t$, and let $\eta_{it}$ denote the income elasticity for sector $i$ in period $t$. As presented in Hubmer (2022), we know that expenditure shares change over time according to,
+
+\begin{equation}
+    d\ln\omega_{it}^n = (1 - \sigma_t) d\ln\left( \frac{P_{it}}{P_t}\right) + (\eta_{it} -1 )d\ln\left( \frac{E_t^n}{P_t}\right), \tag{3}
+\end{equation}
+
+\hfill
+
+\noindent where $P_{it}$ denotes the price level of sector $i$ in period $t$, $P_t$ denotes the overall price level, and $E_t^n$ denotes the total nominal expenditure of household $n$ in period $t$. We furthermore know that the budget constraint imposes the restriction,
+
+\begin{equation}
+    \sum_i \omega_{it}^n\eta_{it} = 1 \tag{4}
+\end{equation}
+
+\hfill
+
+\noindent Let $\xi_{it}$ denote a sector-year fixed effect, and let $b$ denote some baseline sector. To identify the income elasticity in period $t$ for consumption goods in sector $i$, I again follow Hubmer (2022) and consider the expression,
+
+\begin{equation}
+    \ln \left( \frac{\omega_{it}^n}{\omega_{bt}^n} \right) = \xi_{it} + (1 - \sigma_t)\ln(\frac{P_{it}}{P_{bt}})+(\eta_{it} - \eta_{bt})ln\left( \frac{E_t^n}{P_t}\right), \tag{5}
+\end{equation}
+
+\hfill
+
+\noindent which uses expression $(3)$ as a starting point. Assuming that prices do not vary across households conditional on demographic controls $X_t^n$, I can then estimate,
+
+\begin{equation}
+    \ln \left( \frac{\omega_{it}^n}{\omega_{bt}^n} \right) = \xi_{it} + (\eta_{it} - \eta_{bt})\ln E_t^n + \Gamma'_{it}X_t^n + \epsilon_{it}^n, \tag{6}
+\end{equation}
+
+\newpage
+
+\noindent In order to avoid measurement error in sectoral expenditures introducing bias, I use post-tax income to instrument total expenditure. This empirical specification allows me to estimate relative income elasticities, $\eta_{it} - \eta_{bt}$, with respect to some baseline sector. Restriction $(4)$ allows me to recover the individual income elasticities from the relative income elasticities. I can finally directly recover the marginal budget shares from the individual income elasticities by noting that,
+
+\begin{equation}
+    \eta_{it} = \frac{\partial\ln e_{it}^n}{\partial \ln E_{t}^n} \iff \frac{\partial e_{it}^n}{\partial E_t^n} =  \frac{e_{it}^n}{E_t^n}\frac{\partial\ln e_{it}^n}{\partial \ln E_{t}^n} = \omega_{it}^n \eta_{it} \tag{7}
+\end{equation}
+
+\begin{thebibliography}{6}
+
+\bibitem{comin2021}
+Comin, D., Lashkari, D., \& Mestieri, M. (2021). Structural change with long-run income and price effects. \textit{Econometrica}, 89(1), 311–374. https://doi.org/10.3982/ecta16317
+
+\bibitem{hubmer2022}
+Hubmer, J. (2022). The race between preferences and technology. \textit{Econometrica}, 90(5), 1975–2020. https://doi.org/10.3982/ECTA17788
+
+\bibitem{olivi2024}
+Olivi, A., Sterk, V., \& Xhani, D. (2024). Optimal monetary policy during a cost-of-living crisis. Working paper.
+
+\bibitem{sato1975}
+Sato, R. (1975). The most general class of CES functions. \textit{Econometrica}, 43, 999–1003.
+
+\bibitem{schaab2023}
+Schaab, A., \& Tan, S. Y. (2023). Monetary and fiscal policy according to HANK-IO. Working paper.
+
+\end{thebibliography}
+
+\end{document}

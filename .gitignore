@@ -1,0 +1,36 @@
+# ---- R ----
+.Rhistory
+.RData
+.Rproj.user/
+
+# ---- renv ----
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/sandbox/
+renv/staging/
+
+# ---- Data (large, not tracked) ----
+data/raw/**
+data/processed/**
+!data/raw/.gitkeep
+!data/raw/cex/.gitkeep
+!data/raw/cex/zipdata/.gitkeep
+!data/raw/cpi/.gitkeep
+!data/raw/cpi/sectoral/.gitkeep
+!data/processed/.gitkeep
+
+# ---- Output (reproducible, not tracked) ----
+output/figures/**
+output/tables/**
+!output/figures/.gitkeep
+!output/tables/.gitkeep
+
+# Keep README files
+!**/README.md
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
