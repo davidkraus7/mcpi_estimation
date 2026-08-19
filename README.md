@@ -1,6 +1,6 @@
 # Marginal Consumer Price Index (MCPI) Estimation
 
-Independent research project completed during second year of undergrad under the supervision of a faculty advisor. Estimates the Marginal Consumer Price Index using household-level expenditure data from the Bureau of Labor Statistics Consumer Expenditure Surveys (CEX) and sectoral CPI data from FRED (2014--2023).
+Estimates the Marginal Consumer Price Index using household-level expenditure data from the Bureau of Labor Statistics Consumer Expenditure Surveys (CEX) and sectoral CPI data from FRED (2014--2023).
 
 The MCPI weights sectoral price changes by *marginal* budget shares -- how an additional dollar of income is allocated across consumption categories -- rather than *average* budget shares used in the standard CPI. This captures how inflation disproportionately affects households at different income levels.
 
